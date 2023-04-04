@@ -1,0 +1,31 @@
+server:
+  port: 9092
+
+#服务健康监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#openfeign 开启熔断支持
+feign:
+  circuitbreaker:
+    enabled: true
+
+eureka:
+  client:
+    service-url:
+      # 将两个Eureka的地址都加入，这样就算有一个Eureka挂掉，也能完成注册
+      defaultZone: http://localhost:9999/eureka, http://localhost:9998/eureka
+
+
+spring:
+  application:
+    name: borrowservice
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloudstudy
+    username: root
+    password: root123!
+    driver-class-name: com.mysql.cj.jdbc.Driver
